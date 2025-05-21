@@ -1,5 +1,7 @@
 package com.cursosant.cursoandroidl
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -9,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.commit
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,8 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        Toast.makeText(this,"onCreate", Toast.LENGTH_SHORT).show()
-        Log.d("LifeCycle","onCreate")
+        Toast.makeText(this,"Hola, bienvenido", Toast.LENGTH_SHORT).show()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -25,47 +27,11 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val texto = findViewById<TextView>(R.id.txt_output)
-        val boton = findViewById<Button>(R.id.btn_accion)
-        boton.setOnClickListener {
-            texto.text = "Curso Android"
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            add(R.id.fragment_container_view, PrimerFragment())
         }
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show()
-        Log.d("LifeCycle","onStart")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Toast.makeText(this,"onResume", Toast.LENGTH_SHORT).show()
-        Log.d("LifeCycle","onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Toast.makeText(this,"onPause", Toast.LENGTH_SHORT).show()
-        Log.d("LifeCycle","onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Toast.makeText(this,"onStop", Toast.LENGTH_SHORT).show()
-        Log.d("LifeCycle","onStop")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Toast.makeText(this,"onRestart", Toast.LENGTH_SHORT).show()
-        Log.d("LifeCycle","onRestart")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Toast.makeText(this,"onDestroy", Toast.LENGTH_SHORT).show()
-        Log.d("LifeCycle","onDestroy")
     }
 }
+
+
