@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.commit
 import com.cursosant.cursoandroidl.databinding.FragmentPrimerBinding
 
