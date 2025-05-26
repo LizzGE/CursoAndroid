@@ -3,8 +3,10 @@ package com.cursosant.cursoandroidl
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 
 class SegundoFragment : Fragment(R.layout.fragment_segundo) {
 
@@ -22,6 +24,12 @@ class SegundoFragment : Fragment(R.layout.fragment_segundo) {
         super.onViewCreated(view, savedInstanceState)
 
         val text = view.findViewById<TextView>(R.id.txt_output)
+        val button = view.findViewById<Button>(R.id.btn_enviar_datos)
+
+        button.setOnClickListener {
+            val result = "Resultado"
+            setFragmentResult("requestKey", bundleOf("bundlekey" to result))
+        }
         text.text = "$nombre, $edad"
 
     }
